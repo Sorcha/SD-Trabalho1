@@ -1,0 +1,14 @@
+Grupo GD07
+
+* Base de Dados de Peers = Lista
+* Primeiro Peer, adicionado manualmente.
+* Formato XML
+	<musicdatabase>
+		<music name="" year=2010>
+			<album name="" tracknumber=1/>...
+			<artist name=""/>...
+			<format type="mp3"/>...
+		</music>...
+	</musicdatabase>
+* Formato URL 
+	http://<hostname>:<port>/<PeerName>
