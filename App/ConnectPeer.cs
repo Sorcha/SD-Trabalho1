@@ -26,15 +26,14 @@ namespace App
 
             var peer = peerContainer.GetPeer();
 
-            Peer.Self.PeerContainer[peer.Name] = peer;
+            var container = (Peer.Self.PeerContainer as PeerContainer);
+            if (container != null) container.Add(peer);
 
             Form thisForm = this;
             Form form = new MusicWindow();
             form.Show();
             form.Closed += new EventHandler((se, ev) => thisForm.Close());
             Hide();
-
-            
         }
 
         private void register_Click(object sender, EventArgs e)

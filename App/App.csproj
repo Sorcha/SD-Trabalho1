@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PeerHunter.cs" />
     <Compile Include="ConnectPeer.cs">
       <SubType>Form</SubType>
     </Compile>

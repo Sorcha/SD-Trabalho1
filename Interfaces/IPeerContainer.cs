@@ -2,7 +2,7 @@ namespace Interfaces
 {
     public interface IPeerContainer
     {
-        IPeer this[string name] { get; set; }
+        IPeer this[string name] { get; }
 
         IPeer[] GetAvailablePeers();
 

@@ -14,12 +14,6 @@ namespace Indexers
             get
             {
                 return _container.Where(p => p.Name.Equals(name)).SingleOrDefault();
-            } 
-
-            set
-            {
-                if (value == null) throw new ArgumentNullException("value");
-                _container.Add(value);
             }
         }
 
@@ -36,5 +30,34 @@ namespace Indexers
         }
 
         #endregion
+
+        public void Add(IPeer peer)
+        {
+            if(!_container.Contains(peer))
+            {
+                _container.Add(peer);
+                foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                {
+                    _container.Add(peer1);
+                }
+            }
+            
+        }
+
+        public IEnumerable<IPeer> GetAll()
+        {
+            return _container;
+        }
+
+        public void Synchronize()
+        {
+            foreach (var peer in _container)
+            {
+                foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                {
+                    Add(peer1);
+                }
+            }
+        }
     }
 }
