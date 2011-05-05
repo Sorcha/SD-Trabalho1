@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-namespace App.Model
+namespace Indexers.Model
 {
+    [Serializable]
     public class MusicDatabase
     {
-        private Dictionary<string, Album> _albuns = new Dictionary<string, Album>();
+        private readonly Dictionary<string, Album> _albuns = new Dictionary<string, Album>();
 
         public bool HasAlbum(string albumName)
         {

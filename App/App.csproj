@@ -53,9 +53,6 @@
     <Compile Include="ConnectPeer.Designer.cs">
       <DependentUpon>ConnectPeer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\Album.cs" />
-    <Compile Include="Model\Music.cs" />
-    <Compile Include="Model\MusicDatabase.cs" />
     <Compile Include="MusicWindow.cs">
       <SubType>Form</SubType>
     </Compile>

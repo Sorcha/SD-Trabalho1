@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
 
-namespace App.Model
+namespace Indexers.Model
 {
+    [Serializable]
     public class Album
     {
-        public string Name { get; private set; }
+        public string Name { get; internal set; }
 
         private Dictionary<string, Music> _music = new Dictionary<string, Music>(); 
 
