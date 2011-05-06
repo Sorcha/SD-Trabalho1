@@ -1,10 +1,11 @@
 using System;
+using Indexers.Model;
 using Interfaces;
 
 namespace Indexers
 {
     [Serializable]
-    public class Peer : IPeer
+    public class Peer : IPeer, IEquatable<IPeer>
     {
         public static Peer Self { get; set; } 
 
@@ -16,7 +17,7 @@ namespace Indexers
         {
             _name = name;
             _peerContainer = new PeerContainer();
-            _searchEngine = new LocalIndexer();
+            _searchEngine = new LocalIndexer(new MusicDatabase());
         }
 
         #region Implementation of IPeer
@@ -34,6 +35,24 @@ namespace Indexers
         public IPeerContainer PeerContainer
         {
             get { return _peerContainer; }
+        }
+
+        public bool Equals(IPeer peer)
+        {
+            if (peer == null) return false;
+            return peer.Name.Equals(Name);
+        }
+
+        public override bool Equals(object other)
+        {
+            IPeer peer = other as Peer;
+            if (peer == null) return false; 
+            return peer.Name.Equals(Name);
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
 
         #endregion

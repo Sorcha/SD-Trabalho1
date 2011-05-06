@@ -31,7 +31,7 @@ namespace Indexers
         private readonly MusicDatabase _dataBase;
         private readonly IPeerContainer _containerPeers;
 
-        public LocalIndexer(MusicDatabase data, IPeerContainer container)
+        public LocalIndexer(MusicDatabase data)
         {
             _dataBase = data;
         }
@@ -49,7 +49,7 @@ namespace Indexers
                     availablePeer.SearchEngine.SearchFor(criteria);
                 }    
             }
-
+            return null;
         }
 
         public string Ping()

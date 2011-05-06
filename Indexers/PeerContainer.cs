@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Runtime.Remoting;
 using Interfaces;
 using System.Linq;
 
@@ -38,7 +40,7 @@ namespace Indexers
                 _container.Add(peer);
                 foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
                 {
-                    _container.Add(peer1);
+                    Add(peer1);
                 }
             }
             
@@ -51,12 +53,31 @@ namespace Indexers
 
         public void Synchronize()
         {
+            List<IPeer> newPeer = new List<IPeer>();
+            List<IPeer> toRemove = new List<IPeer>();
             foreach (var peer in _container)
             {
-                foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                try
                 {
-                    Add(peer1);
+                    foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                    {
+                        newPeer.Add(peer1);
+                    }
                 }
+                catch(WebException e)
+                {
+                    toRemove.Add(peer);
+                }
+            }
+
+            foreach(var peer in newPeer)
+            {
+                Add(peer);
+            }
+
+            foreach (var peer in toRemove)
+            {
+                _container.Remove(peer);
             }
         }
     }

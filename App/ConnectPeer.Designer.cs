@@ -102,7 +102,8 @@
             this.Controls.Add(this.peerAddress);
             this.Controls.Add(this.peerName);
             this.Name = "ConnectPeer";
-            this.Text = "ConnectPeer";
+            this.Text = "Connect Peer";
+            this.Load += new System.EventHandler(this.ConnectPeer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
