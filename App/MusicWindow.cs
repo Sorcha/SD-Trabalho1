@@ -21,6 +21,7 @@ namespace App
         private void MusicWindow_Load(object sender, EventArgs e)
         {
             var peers = Peer.Self.PeerContainer.GetAvailablePeers();
+           
             
             foreach(var peer in peers)
             {

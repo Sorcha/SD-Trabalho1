@@ -29,6 +29,16 @@ namespace Indexers
             return Peer.Self;
         }
 
+        public bool RemovePeer(IPeer p)
+        {
+            if (_container.Contains(p))
+            {
+                _container.Remove(p);
+                return true;
+            }
+            return false;
+        }
+
         #endregion
 
         public void Add(IPeer peer)
