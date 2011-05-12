@@ -43,6 +43,7 @@
     <Compile Include="IIndexer.cs" />
     <Compile Include="IPeer.cs" />
     <Compile Include="IPeerContainer.cs" />
+    <Compile Include="IRequest.cs" />
     <Compile Include="ISearchEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

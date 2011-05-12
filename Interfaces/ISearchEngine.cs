@@ -4,8 +4,8 @@ namespace Interfaces
 {
     public interface ISearchEngine
     {
-        Uri StartSearching(ISearchCriteria criteria);
+        void StartSearching(ISearchCriteria criteria);
 
-        Uri StartSearching(ISearchCriteria criteria, int depth);
+        void StartSearching(IRequest request);
     }
 }

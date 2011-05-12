@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Indexers.Model
+namespace Logic.Model
 {
     [Serializable]
     public class Music

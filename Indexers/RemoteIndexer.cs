@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Interfaces;
 
-namespace Indexers
+namespace Logic
 {
-    public class RemoteIndexer : MarshalByRefObject, IIndexer
-    {
-        public Uri SearchFor(ISearchCriteria criteria, int count)
-        {
-            throw new NotImplementedException();
-        }
+    delegate void SearchDelegate(IRequest criteria);
 
-       
+    public class RemoteIndexer : IIndexer<IRequest>
+    {
+        public Uri SearchFor(IRequest criteria)
+        {
+            IEnumerable<IPeer> peers = Peer.Self.PeerContainer.GetAvailablePeers();
+            foreach (var peer in peers)
+            {
+                SearchDelegate del = peer.SearchEngine.StartSearching;
+                del.BeginInvoke(criteria, null, null);
+            }
+            return null;
+        }
     }
 }

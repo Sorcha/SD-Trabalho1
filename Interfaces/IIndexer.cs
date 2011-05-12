@@ -20,9 +20,9 @@ namespace Interfaces
        
     }
 
-    public interface IIndexer
+    public interface IIndexer<in T>
     {
-        Uri SearchFor(ISearchCriteria criteria, int depth);
+        Uri SearchFor(T criteria);
   
     }
 }
