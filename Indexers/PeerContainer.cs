@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using Indexers;
 using Interfaces;
 using System.Linq;
 
-namespace Indexers
+namespace Logic
 {
     public class PeerContainer : MarshalByRefObject, IPeerContainer
     {

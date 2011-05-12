@@ -4,6 +4,7 @@ using System.Runtime.Remoting;
 using System.Windows.Forms;
 using Indexers;
 using Interfaces;
+using Logic;
 
 namespace App
 {
