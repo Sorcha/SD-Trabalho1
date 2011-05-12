@@ -31,12 +31,11 @@ namespace Indexers
         #region Implementation of IIndexer
 
         private readonly MusicDatabase _dataBase;
-        private readonly IPeerContainer _containerPeers;
 
-        public LocalIndexer(MusicDatabase data,  IPeerContainer containerPeers)
+        public LocalIndexer(MusicDatabase data)
         {
             _dataBase = data;
-            _containerPeers = containerPeers;
+
         }
 
         public Uri SearchFor(ISearchCriteria criteria, int depth)
