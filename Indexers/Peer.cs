@@ -1,44 +1,33 @@
 using System;
-using Indexers;
-using Indexers.Model;
 using Interfaces;
+using Logic.Model;
 
 namespace Logic
 {
     [Serializable]
-    public class Peer : IPeer
+    public class Peer : MarshalByRefObject, IPeer
     {
         public static Peer Self { get; set; } 
 
-        private readonly string _name;
-        private readonly IIndexer _searchEngine;
-        private readonly IPeerContainer _peerContainer;
-        private readonly MusicDatabase _database;
-
         public Peer(string name, MusicDatabase database)
         {
-            _database = database;
-            _name = name;
-            _peerContainer = new PeerContainer();
-            _searchEngine = new LocalIndexer(_database, _peerContainer);
+            Name = name;
+            PeerContainer = new PeerContainer();
+            SearchEngine = new SearchEngine();
+            LocalIndexer = new LocalIndexer(database);
         }
 
         #region Implementation of IPeer
 
-        public string Name
-        {
-            get { return _name; }
-        }
+        public string Name { get; private set; }
 
-        public IIndexer SearchEngine
-        {
-            get { return _searchEngine; }
-        }
+        public ISearchEngine SearchEngine { get; private set; }
 
-        public IPeerContainer PeerContainer
-        {
-            get { return _peerContainer; }
-        }
+        public IIndexer<ISearchCriteria> LocalIndexer { get; private set; }
+
+        public IPeerContainer PeerContainer { get; private set; }
+
+        public ReceiveResponse ResponseCallback { get; set; }
 
         #endregion
     }

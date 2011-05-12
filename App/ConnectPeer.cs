@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Runtime.Remoting;
 using System.Windows.Forms;
-using Indexers;
 using Interfaces;
 using Logic;
 
@@ -10,6 +9,8 @@ namespace App
 {
     public partial class ConnectPeer : Form
     {
+        readonly MusicWindow _form = new MusicWindow();
+            
         public ConnectPeer()
         {
             InitializeComponent();
@@ -26,16 +27,15 @@ namespace App
             if (container != null) container.Add(peer);
 
             Form thisForm = this;
-            Form form = new MusicWindow();
-            form.Show();
-            form.Closed += (se, ev) => thisForm.Close();
+            _form.Show();
+            _form.Closed += (se, ev) => thisForm.Close();
             Hide();
         }
 
         private void RegisterClick(object sender, EventArgs e)
         {
-            Peer.Self = PeerFactory.CreateInstance(peerName.Text);
-
+            Peer.Self = PeerFactory.CreateInstance(peerName.Text, _form.ShowResponse);
+            
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(PeerContainer),
                 peerName.Text,
                 WellKnownObjectMode.Singleton);

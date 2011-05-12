@@ -33,7 +33,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.searchTB = new System.Windows.Forms.TextBox();
-            this.results = new System.Windows.Forms.ListBox();
+            this.responsesTab = new System.Windows.Forms.TabControl();
+            this.label3 = new System.Windows.Forms.Label();
+            this.remoteRequests = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // availablePeersList
@@ -78,20 +80,39 @@
             this.searchTB.Size = new System.Drawing.Size(462, 20);
             this.searchTB.TabIndex = 4;
             // 
-            // results
+            // responsesTab
             // 
-            this.results.FormattingEnabled = true;
-            this.results.Location = new System.Drawing.Point(15, 76);
-            this.results.Name = "results";
-            this.results.Size = new System.Drawing.Size(540, 186);
-            this.results.TabIndex = 5;
+            this.responsesTab.Location = new System.Drawing.Point(15, 63);
+            this.responsesTab.Name = "responsesTab";
+            this.responsesTab.SelectedIndex = 0;
+            this.responsesTab.Size = new System.Drawing.Size(543, 200);
+            this.responsesTab.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 280);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Remote Requests";
+            // 
+            // remoteRequests
+            // 
+            this.remoteRequests.FormattingEnabled = true;
+            this.remoteRequests.Location = new System.Drawing.Point(15, 296);
+            this.remoteRequests.Name = "remoteRequests";
+            this.remoteRequests.Size = new System.Drawing.Size(741, 186);
+            this.remoteRequests.TabIndex = 8;
             // 
             // MusicWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(768, 280);
-            this.Controls.Add(this.results);
+            this.ClientSize = new System.Drawing.Size(768, 492);
+            this.Controls.Add(this.remoteRequests);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.responsesTab);
             this.Controls.Add(this.searchTB);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
@@ -112,6 +133,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox searchTB;
-        private System.Windows.Forms.ListBox results;
+        private System.Windows.Forms.TabControl responsesTab;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ListBox remoteRequests;
     }
 }

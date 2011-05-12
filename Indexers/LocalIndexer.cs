@@ -1,10 +1,8 @@
 using System;
-using System.Runtime.Remoting;
-using System.Runtime.Remoting.Messaging;
-using Indexers.Model;
 using Interfaces;
+using Logic.Model;
 
-namespace Indexers
+namespace Logic
 {
     internal delegate Uri SearchPeer(ISearchCriteria c, int depth);
 
@@ -26,73 +24,25 @@ namespace Indexers
         }
     }
 
-    public class LocalIndexer : IIndexer
+    public class LocalIndexer : IIndexer<ISearchCriteria>
     {
         #region Implementation of IIndexer
 
         private readonly MusicDatabase _dataBase;
-        private readonly IPeerContainer _containerPeers;
 
-        public LocalIndexer(MusicDatabase data,  IPeerContainer containerPeers)
+        public LocalIndexer(MusicDatabase data)
         {
             _dataBase = data;
-            _containerPeers = containerPeers;
         }
 
-        public Uri SearchFor(ISearchCriteria criteria, int depth)
+        public Uri SearchFor(ISearchCriteria criteria)
         {
             if (_dataBase.HasAlbum(criteria.Value))
             {
                 return new Uri("http://test.com");
             }
 
-            if (depth == 0)
-            {
-                return null;
-            }
-
-            depth -= _containerPeers.GetAvailablePeers().Length;
-            foreach (var availablePeer in _containerPeers.GetAvailablePeers())
-            {
-               try
-               {
-                   
-                   //return availablePeer.SearchEngine.SearchFor(criteria);
-                   SearchPeer p = availablePeer.SearchEngine.SearchFor;
-                   p.BeginInvoke(criteria,depth, CallBackSearch, null);
-                    
-               }
-               catch (RemotingException)
-               {
-                   _containerPeers.RemovePeer(availablePeer);
-               }
-           }
            return null;
-        }
-
-        public void CallBackSearch(IAsyncResult result)
-        {
-            var p = (AsyncResult)result.AsyncState;
-            SearchPeer searchPeer = (SearchPeer) p.AsyncDelegate; 
-            try
-            {
-                Uri music = searchPeer.EndInvoke(result);
-                if (music != null)
-                {
-                    
-                }
-                
-            }catch (RemotingException)
-            {
-                
-            }
-
-            
-        }
-
-        public string Ping()
-        {
-            return "K";
         }
 
         #endregion

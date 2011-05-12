@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml.Serialization;
 
-namespace Indexers.Model
+namespace Logic.Model
 {
     [Serializable]
     public class MusicDatabase
