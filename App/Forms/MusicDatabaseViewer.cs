@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using App.Forms;
 using Logic.Model;
 
 namespace App
@@ -24,6 +25,13 @@ namespace App
         }
 
         private void button2_Click(object sender, EventArgs e)
+        {
+            var createAlbum = new CreateAlbumForm();
+            createAlbum.Closing += (p, t) => _database.StoreAlbum(createAlbum.Album);
+            createAlbum.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

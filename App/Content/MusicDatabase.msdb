@@ -1,0 +1,39 @@
+
+<?xml version="1.0"?>
+<musicdatabase>
+		<music name="Babe" year=2010>
+			<album name="babababa" tracknumber=1/>
+			<artist name="babaArtist"/>
+			<format type="mp3"/>
+		</music>
+		<music name="nananana" year=2010>
+			<album name="NanaAlbum" tracknumber=1/>
+			<artist name="NanaArtist"/>
+			<format type="mp3"/>
+		</music>
+		<music name="nananana2" year=2010>
+			<album name="NanaAlbum" tracknumber=1/>
+			<artist name="NanaArtist"/>
+			<format type="mp3"/>
+		</music>
+		<music name="nananana3" year=2010>
+			<album name="NanaAlbum" tracknumber=1/>
+			<artist name="NanaArtist"/>
+			<format type="mp3"/>
+		</music>
+		<music name="Babe2" year=2010>
+			<album name="babababa" tracknumber=1/>
+			<artist name="babaArtist"/>
+			<format type="mp3"/>
+		</music>
+		<music name="Babe3" year=2010>
+			<album name="babababa" tracknumber=1/>
+			<artist name="babaArtist"/>
+			<format type="mp3"/>
+		</music>
+		<music name="Ana" year=2010>
+			<album name="AnaAlbum" tracknumber=1/>
+			<artist name="AnaArtist"/>
+			<format type="mp3"/>
+		</music>
+</musicdatabase>

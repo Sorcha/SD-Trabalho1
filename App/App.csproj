@@ -95,6 +95,9 @@
     <EmbeddedResource Include="Forms\CreateAlbumForm.resx">
       <DependentUpon>CreateAlbumForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreateMusicForm.resx">
+      <DependentUpon>CreateMusicForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControls\AlbumViewer.resx">
       <DependentUpon>AlbumViewer.cs</DependentUpon>
     </EmbeddedResource>

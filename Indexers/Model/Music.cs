@@ -19,7 +19,13 @@ namespace Logic.Model
         {
             if(!_artists.Contains(artist))
                 _artists.Add(artist);
-            throw new AlreadyExistingArtistException();
+            else
+                throw new AlreadyExistingArtistException();
+        }
+
+        public void RemoveArtist(string artist)
+        {
+            _artists.Remove(artist);
         }
     }
 
