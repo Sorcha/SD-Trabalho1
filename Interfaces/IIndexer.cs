@@ -23,7 +23,6 @@ namespace Interfaces
     public interface IIndexer
     {
         Uri SearchFor(ISearchCriteria criteria, int depth);
-
-        
+  
     }
 }

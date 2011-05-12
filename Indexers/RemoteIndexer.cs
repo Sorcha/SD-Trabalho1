@@ -2,10 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Interfaces;
 
 namespace Indexers
 {
-    class RemoteIndexer
+    public class RemoteIndexer : MarshalByRefObject, IIndexer
     {
+        public Uri SearchFor(ISearchCriteria criteria, int count)
+        {
+            throw new NotImplementedException();
+        }
+
+       
     }
 }
