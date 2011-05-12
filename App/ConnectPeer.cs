@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
+using System.Configuration;
 using System.Runtime.Remoting;
-using System.Text;
 using System.Windows.Forms;
 using Indexers;
 using Interfaces;
+using Logic;
 
 namespace App
 {
@@ -19,7 +15,7 @@ namespace App
             InitializeComponent();
         }
 
-        private void connect_Click(object sender, EventArgs e)
+        private void ConnectClick(object sender, EventArgs e)
         {
             var peerContainer =
                 (IPeerContainer)Activator.GetObject(typeof(IPeerContainer), peerAddress.Text);
@@ -32,19 +28,24 @@ namespace App
             Form thisForm = this;
             Form form = new MusicWindow();
             form.Show();
-            form.Closed += new EventHandler((se, ev) => thisForm.Close());
+            form.Closed += (se, ev) => thisForm.Close();
             Hide();
         }
 
-        private void register_Click(object sender, EventArgs e)
+        private void RegisterClick(object sender, EventArgs e)
         {
-            Peer.Self = new Peer(peerName.Text);
+            Peer.Self = PeerFactory.CreateInstance(peerName.Text);
 
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(PeerContainer),
                 peerName.Text,
                 WellKnownObjectMode.Singleton);
             
             register.Enabled = false;
+        }
+
+        private void ConnectPeerLoad(object sender, EventArgs e)
+        {
+            Text += string.Format(": {0}", ConfigurationManager.AppSettings["port"]);
         }
     }
 }

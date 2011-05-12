@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Net;
+using Indexers;
 using Interfaces;
 using System.Linq;
 
-namespace Indexers
+namespace Logic
 {
     public class PeerContainer : MarshalByRefObject, IPeerContainer
     {
@@ -48,7 +50,7 @@ namespace Indexers
                 _container.Add(peer);
                 foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
                 {
-                    _container.Add(peer1);
+                    Add(peer1);
                 }
             }
             
@@ -61,12 +63,28 @@ namespace Indexers
 
         public void Synchronize()
         {
+            List<IPeer> newPeer = new List<IPeer>();
+            List<IPeer> toRemove = new List<IPeer>();
             foreach (var peer in _container)
             {
-                foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                try
                 {
-                    Add(peer1);
+                    newPeer.AddRange(peer.PeerContainer.GetAvailablePeers());
                 }
+                catch(WebException)
+                {
+                    toRemove.Add(peer);
+                }
+            }
+
+            foreach(var peer in newPeer)
+            {
+                Add(peer);
+            }
+
+            foreach (var peer in toRemove)
+            {
+                _container.Remove(peer);
             }
         }
     }

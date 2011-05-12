@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace Indexers.Model
 {
@@ -7,6 +9,11 @@ namespace Indexers.Model
     public class MusicDatabase
     {
         private readonly Dictionary<string, Album> _albuns = new Dictionary<string, Album>();
+
+        private MusicDatabase()
+        {
+            
+        }
 
         public bool HasAlbum(string albumName)
         {
@@ -25,6 +32,38 @@ namespace Indexers.Model
             if(!HasAlbum(album.Name))
                 _albuns.Add(album.Name, album);
             throw new AlreadyExistingAlbumException();
+        }
+
+        public static MusicDatabase Load(string fileName)
+        {
+            MusicDatabase dataBase = null;
+            try
+            {
+                var xs = new XmlSerializer(typeof(MusicDatabase), new Type[] { typeof(Music), typeof(Album) });
+                var stream = new FileStream(fileName, FileMode.Open);
+                dataBase = (MusicDatabase)xs.Deserialize(stream);
+                stream.Close();
+            }
+            catch (Exception)
+            {
+
+            }
+            return dataBase;
+        }
+
+        public void Save(string fileName)
+        {
+            try
+            {
+                var xs = new XmlSerializer(typeof(MusicDatabase), new Type[] { typeof(Music), typeof(Album) });
+                var stream = new FileStream(fileName, FileMode.Open);
+                xs.Serialize(stream, this);
+                stream.Close();
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 

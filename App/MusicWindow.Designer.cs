@@ -99,7 +99,7 @@
             this.Controls.Add(this.availablePeersList);
             this.Name = "MusicWindow";
             this.Text = "Music Window";
-            this.Load += new System.EventHandler(this.MusicWindow_Load);
+            this.Load += new System.EventHandler(this.MusicWindowLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

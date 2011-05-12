@@ -8,8 +8,8 @@
     <ProjectGuid>{CFE72992-F704-4436-8B1F-A3DF839CDA17}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Indexers</RootNamespace>
-    <AssemblyName>Indexers</AssemblyName>
+    <RootNamespace>Logic</RootNamespace>
+    <AssemblyName>Logic</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,10 +45,11 @@
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\Music.cs" />
     <Compile Include="Model\MusicDatabase.cs" />
-    <Compile Include="Model\XmlUtils.cs" />
     <Compile Include="Peer.cs" />
     <Compile Include="PeerContainer.cs" />
+    <Compile Include="PeerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">

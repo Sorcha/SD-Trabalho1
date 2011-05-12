@@ -26,7 +26,7 @@ namespace Indexers
         }
     }
 
-    public class LocalIndexer : MarshalByRefObject, IIndexer
+    public class LocalIndexer : IIndexer
     {
         #region Implementation of IIndexer
 
@@ -43,7 +43,7 @@ namespace Indexers
         {
             if (_dataBase.HasAlbum(criteria.Value))
             {
-                return Peer.Self.UrlPeer;
+                return new Uri("http://test.com");
             }
 
             if (depth == 0)
@@ -62,7 +62,7 @@ namespace Indexers
                    p.BeginInvoke(criteria,depth, CallBackSearch, null);
                     
                }
-               catch (RemotingException e)
+               catch (RemotingException)
                {
                    _containerPeers.RemovePeer(availablePeer);
                }
@@ -82,7 +82,7 @@ namespace Indexers
                     
                 }
                 
-            }catch (RemotingException e)
+            }catch (RemotingException)
             {
                 
             }
