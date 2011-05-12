@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Logic.Model
 {
@@ -25,6 +26,11 @@ namespace Logic.Model
             if(!_music.ContainsKey(music.Name))
                 _music.Add(music.Name, music);
             throw new AlreadyExistingMusicException();
+        }
+
+        public Music[] GetAllMusics()
+        {
+            return _music.Values.ToArray();
         }
     }
 

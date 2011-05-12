@@ -47,25 +47,67 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PeerHunter.cs" />
-    <Compile Include="ConnectPeer.cs">
+    <Compile Include="Forms\CreateAlbumForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConnectPeer.Designer.cs">
+    <Compile Include="Forms\CreateAlbumForm.Designer.cs">
+      <DependentUpon>CreateAlbumForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreateMusicForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateMusicForm.Designer.cs">
+      <DependentUpon>CreateMusicForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControls\AlbumViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\AlbumViewer.Designer.cs">
+      <DependentUpon>AlbumViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MusicDatabaseViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MusicDatabaseViewer.Designer.cs">
+      <DependentUpon>MusicDatabaseViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControls\MusicViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\MusicViewer.Designer.cs">
+      <DependentUpon>MusicViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PeerHunter.cs" />
+    <Compile Include="Forms\ConnectPeer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConnectPeer.Designer.cs">
       <DependentUpon>ConnectPeer.cs</DependentUpon>
     </Compile>
-    <Compile Include="MusicWindow.cs">
+    <Compile Include="Forms\MusicWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MusicWindow.Designer.cs">
+    <Compile Include="Forms\MusicWindow.Designer.cs">
       <DependentUpon>MusicWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ConnectPeer.resx">
+    <EmbeddedResource Include="Forms\CreateAlbumForm.resx">
+      <DependentUpon>CreateAlbumForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\AlbumViewer.resx">
+      <DependentUpon>AlbumViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConnectPeer.resx">
       <DependentUpon>ConnectPeer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MusicWindow.resx">
+    <EmbeddedResource Include="Forms\MusicDatabaseViewer.resx">
+      <DependentUpon>MusicDatabaseViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\MusicViewer.resx">
+      <DependentUpon>MusicViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MusicWindow.resx">
       <DependentUpon>MusicWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -99,6 +141,11 @@
       <Project>{FF305C6A-CA71-4E02-9B89-C9B80C28B79B}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\MusicDatabase.msdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

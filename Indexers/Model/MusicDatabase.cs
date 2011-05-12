@@ -46,7 +46,7 @@ namespace Logic.Model
             }
             catch (Exception)
             {
-
+                return new MusicDatabase();
             }
             return dataBase;
         }
