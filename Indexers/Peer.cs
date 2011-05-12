@@ -5,19 +5,21 @@ using Interfaces;
 namespace Indexers
 {
     [Serializable]
-    public class Peer : IPeer, IEquatable<IPeer>
+    public class Peer : IPeer
     {
         public static Peer Self { get; set; } 
 
         private readonly string _name;
         private readonly IIndexer _searchEngine;
         private readonly IPeerContainer _peerContainer;
+        private readonly MusicDatabase _database;
 
-        public Peer(string name)
+        public Peer(string name, MusicDatabase database)
         {
+            _database = database;
             _name = name;
             _peerContainer = new PeerContainer();
-            _searchEngine = new LocalIndexer(new MusicDatabase());
+            _searchEngine = new LocalIndexer(_database, _peerContainer);
         }
 
         #region Implementation of IPeer
@@ -35,24 +37,6 @@ namespace Indexers
         public IPeerContainer PeerContainer
         {
             get { return _peerContainer; }
-        }
-
-        public bool Equals(IPeer peer)
-        {
-            if (peer == null) return false;
-            return peer.Name.Equals(Name);
-        }
-
-        public override bool Equals(object other)
-        {
-            IPeer peer = other as Peer;
-            if (peer == null) return false; 
-            return peer.Name.Equals(Name);
-        }
-
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
         }
 
         #endregion

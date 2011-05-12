@@ -58,7 +58,7 @@
             this.connect.TabIndex = 2;
             this.connect.Text = "Connect BIATCH";
             this.connect.UseVisualStyleBackColor = true;
-            this.connect.Click += new System.EventHandler(this.connect_Click);
+            this.connect.Click += new System.EventHandler(this.ConnectClick);
             // 
             // label1
             // 
@@ -88,7 +88,7 @@
             this.register.TabIndex = 5;
             this.register.Text = "Register";
             this.register.UseVisualStyleBackColor = true;
-            this.register.Click += new System.EventHandler(this.register_Click);
+            this.register.Click += new System.EventHandler(this.RegisterClick);
             // 
             // ConnectPeer
             // 
@@ -103,7 +103,7 @@
             this.Controls.Add(this.peerName);
             this.Name = "ConnectPeer";
             this.Text = "Connect Peer";
-            this.Load += new System.EventHandler(this.ConnectPeer_Load);
+            this.Load += new System.EventHandler(this.ConnectPeerLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

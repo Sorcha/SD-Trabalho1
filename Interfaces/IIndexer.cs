@@ -17,6 +17,7 @@ namespace Interfaces
     {
         SearchType Type { get; }
         string Value { get; }
+        int CountOfNrPeer { get; set; }
     }
 
     public interface IIndexer

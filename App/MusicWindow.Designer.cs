@@ -64,7 +64,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(480, 13);
+            this.button1.Location = new System.Drawing.Point(483, 20);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 37);
             this.button1.TabIndex = 3;
@@ -73,9 +73,9 @@
             // 
             // searchTB
             // 
-            this.searchTB.Location = new System.Drawing.Point(15, 30);
+            this.searchTB.Location = new System.Drawing.Point(15, 29);
             this.searchTB.Name = "searchTB";
-            this.searchTB.Size = new System.Drawing.Size(446, 20);
+            this.searchTB.Size = new System.Drawing.Size(462, 20);
             this.searchTB.TabIndex = 4;
             // 
             // results
@@ -99,7 +99,7 @@
             this.Controls.Add(this.availablePeersList);
             this.Name = "MusicWindow";
             this.Text = "Music Window";
-            this.Load += new System.EventHandler(this.MusicWindow_Load);
+            this.Load += new System.EventHandler(this.MusicWindowLoad);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
-using System.Runtime.Remoting;
 using Interfaces;
 using System.Linq;
 
@@ -29,6 +28,16 @@ namespace Indexers
         public IPeer GetPeer()
         {
             return Peer.Self;
+        }
+
+        public bool RemovePeer(IPeer p)
+        {
+            if (_container.Contains(p))
+            {
+                _container.Remove(p);
+                return true;
+            }
+            return false;
         }
 
         #endregion
@@ -59,12 +68,9 @@ namespace Indexers
             {
                 try
                 {
-                    foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
-                    {
-                        newPeer.Add(peer1);
-                    }
+                    newPeer.AddRange(peer.PeerContainer.GetAvailablePeers());
                 }
-                catch(WebException e)
+                catch(WebException)
                 {
                     toRemove.Add(peer);
                 }

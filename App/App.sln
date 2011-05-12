@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App.csproj", "{B9FE2CDF-AB6E-4559-81CB-F0D759CD925E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indexers", "..\Indexers\Indexers.csproj", "{CFE72992-F704-4436-8B1F-A3DF839CDA17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "..\Indexers\Logic.csproj", "{CFE72992-F704-4436-8B1F-A3DF839CDA17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "..\Interfaces\Interfaces.csproj", "{FF305C6A-CA71-4E02-9B89-C9B80C28B79B}"
 EndProject

@@ -7,5 +7,7 @@ namespace Interfaces
         IPeer[] GetAvailablePeers();
 
         IPeer GetPeer();
+
+        bool RemovePeer(IPeer p);
     }
 }
