@@ -6,7 +6,7 @@ using Interfaces;
 
 namespace Indexers
 {
-    internal delegate Uri SearchPeer(ISearchCriteria c);
+    internal delegate Uri SearchPeer(ISearchCriteria c, int depth);
 
     [Serializable]
     public class SearchCriteria : ISearchCriteria
@@ -16,10 +16,6 @@ namespace Indexers
         public SearchType Type { get; internal set; }
 
         public string Value { get; internal set; }
-
-        public int CountOfNrPeer
-        {
-            get; set; }
 
         #endregion
 
@@ -43,28 +39,27 @@ namespace Indexers
             _containerPeers = containerPeers;
         }
 
-        public Uri SearchFor(ISearchCriteria criteria)
+        public Uri SearchFor(ISearchCriteria criteria, int depth)
         {
             if (_dataBase.HasAlbum(criteria.Value))
             {
                 return Peer.Self.UrlPeer;
             }
 
-            if (criteria.CountOfNrPeer == 0)
+            if (depth == 0)
             {
                 return null;
             }
 
-            criteria.CountOfNrPeer -= _containerPeers.GetAvailablePeers().Length;
+            depth -= _containerPeers.GetAvailablePeers().Length;
             foreach (var availablePeer in _containerPeers.GetAvailablePeers())
             {
-               
                try
                {
                    
                    //return availablePeer.SearchEngine.SearchFor(criteria);
                    SearchPeer p = availablePeer.SearchEngine.SearchFor;
-                   p.BeginInvoke(criteria, CallBackSearch, null);
+                   p.BeginInvoke(criteria,depth, CallBackSearch, null);
                     
                }
                catch (RemotingException e)
@@ -79,8 +74,6 @@ namespace Indexers
         {
             var p = (AsyncResult)result.AsyncState;
             SearchPeer searchPeer = (SearchPeer) p.AsyncDelegate; 
-
-
             try
             {
                 Uri music = searchPeer.EndInvoke(result);

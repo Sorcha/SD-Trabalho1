@@ -17,13 +17,13 @@ namespace Interfaces
     {
         SearchType Type { get; }
         string Value { get; }
-        int CountOfNrPeer { get; set; }
+       
     }
 
     public interface IIndexer
     {
-        Uri SearchFor(ISearchCriteria criteria);
+        Uri SearchFor(ISearchCriteria criteria, int depth);
 
-        string Ping();
+        
     }
 }

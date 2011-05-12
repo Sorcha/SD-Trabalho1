@@ -91,9 +91,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Indexers\Indexers.csproj">
+    <ProjectReference Include="..\Indexers\Logic.csproj">
       <Project>{CFE72992-F704-4436-8B1F-A3DF839CDA17}</Project>
-      <Name>Indexers</Name>
+      <Name>Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">
       <Project>{FF305C6A-CA71-4E02-9B89-C9B80C28B79B}</Project>
