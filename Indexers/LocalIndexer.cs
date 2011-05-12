@@ -30,7 +30,7 @@ namespace Indexers
         }
     }
 
-    public class LocalIndexer : MarshalByRefObject, IIndexer
+    public class LocalIndexer : IIndexer
     {
         #region Implementation of IIndexer
 

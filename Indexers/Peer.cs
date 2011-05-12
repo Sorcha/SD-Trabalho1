@@ -1,8 +1,9 @@
 using System;
+using Indexers;
 using Indexers.Model;
 using Interfaces;
 
-namespace Indexers
+namespace Logic
 {
     [Serializable]
     public class Peer : IPeer

@@ -1,7 +1,8 @@
 using System.Configuration;
+using Indexers;
 using Indexers.Model;
 
-namespace Indexers
+namespace Logic
 {
     public class PeerFactory
     {
