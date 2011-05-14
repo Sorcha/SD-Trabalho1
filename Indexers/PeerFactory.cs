@@ -8,7 +8,7 @@ namespace Logic
     {
         public static Peer CreateInstance(string name, ReceiveResponse response)
         {
-            return new Peer(name, MusicDatabase.Load(ConfigurationManager.AppSettings["DATABASE_FILE"])) { ResponseCallback = response };
+            return new Peer(name, MusicDatabase.Load(ConfigurationManager.AppSettings["DATABASE_FILE"]), response);
         }
     }
 }

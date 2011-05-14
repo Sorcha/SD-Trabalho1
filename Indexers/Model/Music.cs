@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using Interfaces.Model;
 
 namespace Logic.Model
 {
     [Serializable]
-    public class Music
+    public class Music : IMusic
     {
         public string Name { get; set; }
 
-        private List<string> _artists = new List<string>();
+        private readonly List<string> _artists = new List<string>();
 
         public IEnumerable<string> GetArtists()
         {

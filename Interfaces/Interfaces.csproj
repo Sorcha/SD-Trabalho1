@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IIndexer.cs" />
+    <Compile Include="Model\IAlbum.cs" />
+    <Compile Include="Model\IMusic.cs" />
+    <Compile Include="Model\IMusicDatabase.cs" />
     <Compile Include="IPeer.cs" />
     <Compile Include="IPeerContainer.cs" />
     <Compile Include="IRequest.cs" />

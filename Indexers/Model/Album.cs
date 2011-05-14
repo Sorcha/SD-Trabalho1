@@ -1,17 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Interfaces.Model;
 
 namespace Logic.Model
 {
     [Serializable]
-    public class Album
+    public class Album : IAlbum
     {
         public string Name { get; set; }
 
         private Dictionary<string, Music> _music = new Dictionary<string, Music>(); 
 
-        public Music this[string musicName]
+        public IMusic this[string musicName]
         {
             get
             {
@@ -35,7 +36,7 @@ namespace Logic.Model
             _music.Remove(music);
         }
 
-        public Music[] GetAllMusics()
+        public IMusic[] GetAllMusics()
         {
             return _music.Values.ToArray();
         }

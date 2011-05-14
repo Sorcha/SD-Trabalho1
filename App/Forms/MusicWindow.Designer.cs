@@ -31,7 +31,7 @@
             this.availablePeersList = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
             this.searchTB = new System.Windows.Forms.TextBox();
             this.responsesTab = new System.Windows.Forms.TabControl();
             this.label3 = new System.Windows.Forms.Label();
@@ -69,14 +69,15 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Search";
             // 
-            // button1
+            // searchButton
             // 
-            this.button1.Location = new System.Drawing.Point(483, 41);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 37);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "SEARCH BITCH";
-            this.button1.UseVisualStyleBackColor = true;
+            this.searchButton.Location = new System.Drawing.Point(483, 41);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(75, 37);
+            this.searchButton.TabIndex = 3;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // searchTB
             // 
@@ -96,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 280);
+            this.label3.Location = new System.Drawing.Point(12, 301);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 13);
             this.label3.TabIndex = 7;
@@ -132,14 +133,14 @@
             // viewDatabaseToolStripMenuItem
             // 
             this.viewDatabaseToolStripMenuItem.Name = "viewDatabaseToolStripMenuItem";
-            this.viewDatabaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewDatabaseToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.viewDatabaseToolStripMenuItem.Text = "View Database";
             this.viewDatabaseToolStripMenuItem.Click += new System.EventHandler(this.ViewDatabaseToolStripMenuItemClick);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItemClick);
             // 
@@ -152,7 +153,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.responsesTab);
             this.Controls.Add(this.searchTB);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.searchButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.availablePeersList);
@@ -173,7 +174,7 @@
         private System.Windows.Forms.ListBox availablePeersList;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox searchTB;
         private System.Windows.Forms.TabControl responsesTab;
         private System.Windows.Forms.Label label3;

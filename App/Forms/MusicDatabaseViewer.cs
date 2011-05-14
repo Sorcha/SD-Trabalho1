@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Windows.Forms;
+using Interfaces;
+using Interfaces.Model;
 using Logic.Model;
 
 namespace App.Forms
 {
     public partial class MusicDatabaseViewer : Form
     {
-        private readonly MusicDatabase _database;
+        private readonly IMusicDatabase _database;
         private readonly string _fileName;
 
-        public MusicDatabaseViewer(MusicDatabase database)
+        public MusicDatabaseViewer(IMusicDatabase database)
         {
             InitializeComponent();
             _database = database;
         }
 
-        public MusicDatabaseViewer(MusicDatabase database, string fileName) : this(database)
+        public MusicDatabaseViewer(IMusicDatabase database, string fileName) : this(database)
         {
             _fileName = fileName;
         }

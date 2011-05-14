@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using Interfaces;
+using Interfaces.Model;
 
 namespace Logic.Model
 {
     [Serializable]
-    public class MusicDatabase
+    public class MusicDatabase : IMusicDatabase
     {
-        private readonly Dictionary<string, Album> _albuns = new Dictionary<string, Album>();
+        private readonly Dictionary<string, IAlbum> _albuns = new Dictionary<string, IAlbum>();
 
         private MusicDatabase()
         {
@@ -21,14 +23,14 @@ namespace Logic.Model
             return _albuns.ContainsKey(albumName);
         }
 
-        public Album GetAlbum(string albumName)
+        public IAlbum GetAlbum(string albumName)
         {
             if(HasAlbum(albumName))
                 return _albuns[albumName];
             return null;
         }
 
-        public void StoreAlbum(Album album)
+        public void StoreAlbum(IAlbum album)
         {
             if(!HasAlbum(album.Name))
                 _albuns.Add(album.Name, album);

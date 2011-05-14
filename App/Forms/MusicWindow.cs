@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using App.Forms;
@@ -44,18 +45,39 @@ namespace App
 
         public void ShowResponse(IRequest request, Uri response)
         {
-            
+            foreach (TabPage source in responsesTab.TabPages)
+            {
+                if(source.Text.Equals(request.SearchCriteria.Value))
+                {
+                    if(source.Controls.Count == 0)
+                    {
+                        source.Controls.Add(new ListBox());
+                    }
+
+                    ListBox list = source.Controls[0] as ListBox;
+                    if(list != null)
+                    {
+                        list.Items.Add(response);
+                    }
+                    break;
+                }
+            }
         }
 
         private void ViewDatabaseToolStripMenuItemClick(object sender, EventArgs e)
         {
-            var databaseViewer = new MusicDatabaseViewer(Peer.Self.Database, ConfigurationManager.AppSettings["DATABASE_FILE"]);
+            var databaseViewer = new MusicDatabaseViewer(Peer.Self.SearchEngine.Database, ConfigurationManager.AppSettings["DATABASE_FILE"]);
             databaseViewer.Show(this);
         }
 
         private void CloseToolStripMenuItemClick(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            responsesTab.TabPages.Add(new TabPage(searchTB.Text));
         }
     }
 }

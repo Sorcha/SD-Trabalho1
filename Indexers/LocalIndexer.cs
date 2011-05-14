@@ -1,4 +1,6 @@
 using System;
+using System.Configuration;
+using System.Net;
 using Interfaces;
 using Logic.Model;
 
@@ -39,7 +41,7 @@ namespace Logic
         {
             if (_dataBase.HasAlbum(criteria.Value))
             {
-                return new Uri("http://test.com");
+                return new Uri(string.Format("http://{0}:{1}/{2}", Dns.GetHostEntry(Dns.GetHostName()), ConfigurationManager.AppSettings["port"], Peer.Self.Name));
             }
 
            return null;

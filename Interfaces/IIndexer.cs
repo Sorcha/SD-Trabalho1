@@ -23,6 +23,5 @@ namespace Interfaces
     public interface IIndexer<in T>
     {
         Uri SearchFor(T criteria);
-  
     }
 }

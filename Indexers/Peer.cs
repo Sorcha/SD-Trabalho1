@@ -5,17 +5,15 @@ using Logic.Model;
 namespace Logic
 {
     [Serializable]
-    public class Peer : MarshalByRefObject, IPeer
+    public class Peer : IPeer
     {
         public static Peer Self { get; set; } 
 
-        public Peer(string name, MusicDatabase database)
+        public Peer(string name, MusicDatabase database, ReceiveResponse responseCallback)
         {
             Name = name;
             PeerContainer = new PeerContainer();
-            SearchEngine = new SearchEngine();
-            LocalIndexer = new LocalIndexer(database);
-            Database = database;
+            SearchEngine = new SearchEngine(database, responseCallback);
         }
 
         #region Implementation of IPeer
@@ -23,14 +21,8 @@ namespace Logic
         public string Name { get; private set; }
 
         public ISearchEngine SearchEngine { get; private set; }
-
-        public IIndexer<ISearchCriteria> LocalIndexer { get; private set; }
-
+        
         public IPeerContainer PeerContainer { get; private set; }
-
-        public ReceiveResponse ResponseCallback { get; set; }
-
-        public MusicDatabase Database { get; private set; }
 
         #endregion
     }

@@ -6,14 +6,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Interfaces.Model;
 using Logic.Model;
 
 namespace App
 {
     public partial class MusicViewer : UserControl
     {
-        private Music _music;
-        public MusicViewer(Music music)
+        private IMusic _music;
+        public MusicViewer(IMusic music)
         {
             InitializeComponent();
             _music = music;

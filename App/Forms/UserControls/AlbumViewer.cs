@@ -6,14 +6,15 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Interfaces.Model;
 using Logic.Model;
 
 namespace App
 {
     public partial class AlbumViewer : UserControl
     {
-        private Album _album;
-        public AlbumViewer(Album album)
+        private IAlbum _album;
+        public AlbumViewer(IAlbum album)
         {
             InitializeComponent();
             _album = album;
