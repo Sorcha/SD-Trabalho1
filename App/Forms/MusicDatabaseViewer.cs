@@ -1,39 +1,80 @@
 ﻿using System;
 using System.Windows.Forms;
-using App.Forms;
 using Logic.Model;
 
-namespace App
+namespace App.Forms
 {
     public partial class MusicDatabaseViewer : Form
     {
         private readonly MusicDatabase _database;
+        private readonly string _fileName;
+
         public MusicDatabaseViewer(MusicDatabase database)
         {
             InitializeComponent();
             _database = database;
         }
 
+        public MusicDatabaseViewer(MusicDatabase database, string fileName) : this(database)
+        {
+            _fileName = fileName;
+        }
+
         private void AlbunsListSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach(Control control in albumViewer.Controls)
+            if(!albunsList.SelectedItem.Equals(""))
             {
-                albumViewer.Controls.Remove(control);
-            }
+                foreach (Control control in albumViewer.Controls)
+                {
+                    albumViewer.Controls.Remove(control);
+                }
 
-            albumViewer.Controls.Add(new AlbumViewer(_database.GetAlbum(((ListBox) sender).SelectedItem.ToString())));
+                albumViewer.Controls.Add(new AlbumViewer(_database.GetAlbum(((ListBox)sender).SelectedItem.ToString())));
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void AddAlbumClick(object sender, EventArgs e)
         {
             var createAlbum = new CreateAlbumForm();
-            createAlbum.Closing += (p, t) => _database.StoreAlbum(createAlbum.Album);
-            createAlbum.Show();
+            createAlbum.Closing += (p, t) => { 
+                                                if(createAlbum.Album != null)
+                                                {
+                                                    _database.StoreAlbum(createAlbum.Album);
+                                                    albunsList.Items.Add(createAlbum.Album.Name);
+                                                }
+                                              };
+            createAlbum.Show(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void RemoveAlbumClick(object sender, EventArgs e)
         {
+            string selectedAlbum = albunsList.SelectedItem.ToString();
+            _database.RemoveAlbum(selectedAlbum);
+            albunsList.Items.Remove(selectedAlbum);
+        }
 
+        private void SaveButtonClick(object sender, EventArgs e)
+        {
+            string fileName = null;
+            if(_fileName == null)
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.Filter = "Music Database Files (*.msdb)|*.msdb";
+                if (dialog.ShowDialog(this) == DialogResult.OK)
+                {
+                   fileName = dialog.FileName;
+                }
+            }
+            else
+            {
+                fileName = _fileName;
+            }
+
+            if(fileName != null)
+            {
+                _database.Save(fileName);
+                Close();
+            }
         }
     }
 }

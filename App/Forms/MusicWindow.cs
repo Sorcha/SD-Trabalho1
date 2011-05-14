@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading;
 using System.Windows.Forms;
+using App.Forms;
 using Interfaces;
 using Logic;
+using Logic.Model;
 
 namespace App
 {
@@ -42,6 +45,17 @@ namespace App
         public void ShowResponse(IRequest request, Uri response)
         {
             
+        }
+
+        private void ViewDatabaseToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            var databaseViewer = new MusicDatabaseViewer(Peer.Self.Database, ConfigurationManager.AppSettings["DATABASE_FILE"]);
+            databaseViewer.Show(this);
+        }
+
+        private void CloseToolStripMenuItemClick(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

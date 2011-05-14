@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace Logic.Model
@@ -31,7 +32,8 @@ namespace Logic.Model
         {
             if(!HasAlbum(album.Name))
                 _albuns.Add(album.Name, album);
-            throw new AlreadyExistingAlbumException();
+            else
+                throw new AlreadyExistingAlbumException();
         }
 
         public static MusicDatabase Load(string fileName)
@@ -56,7 +58,7 @@ namespace Logic.Model
             try
             {
                 var xs = new XmlSerializer(typeof(MusicDatabase), new Type[] { typeof(Music), typeof(Album) });
-                var stream = new FileStream(fileName, FileMode.Open);
+                var stream = new FileStream(fileName, FileMode.Create);
                 xs.Serialize(stream, this);
                 stream.Close();
             }
@@ -64,6 +66,12 @@ namespace Logic.Model
             {
 
             }
+        }
+
+        public void RemoveAlbum(string albumName)
+        {
+            var album = _albuns.Where(m => m.Value.Name.Equals(albumName)).Select(p => p.Key).Single();
+            _albuns.Remove(album);
         }
     }
 

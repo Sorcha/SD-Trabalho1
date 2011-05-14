@@ -42,7 +42,7 @@
             this.musicList.Name = "musicList";
             this.musicList.Size = new System.Drawing.Size(149, 238);
             this.musicList.TabIndex = 0;
-            this.musicList.SelectedIndexChanged += new System.EventHandler(this.musicList_SelectedIndexChanged);
+            this.musicList.SelectedIndexChanged += new System.EventHandler(this.MusicListSelectedIndexChanged);
             // 
             // label1
             // 

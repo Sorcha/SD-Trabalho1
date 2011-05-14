@@ -15,6 +15,7 @@ namespace Logic
             PeerContainer = new PeerContainer();
             SearchEngine = new SearchEngine();
             LocalIndexer = new LocalIndexer(database);
+            Database = database;
         }
 
         #region Implementation of IPeer
@@ -28,6 +29,8 @@ namespace Logic
         public IPeerContainer PeerContainer { get; private set; }
 
         public ReceiveResponse ResponseCallback { get; set; }
+
+        public MusicDatabase Database { get; private set; }
 
         #endregion
     }

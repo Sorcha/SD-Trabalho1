@@ -34,6 +34,7 @@
             this.musicList = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -51,7 +52,7 @@
             this.albumName.Name = "albumName";
             this.albumName.Size = new System.Drawing.Size(504, 20);
             this.albumName.TabIndex = 1;
-            this.albumName.TextChanged += new System.EventHandler(this.albumName_TextChanged);
+            this.albumName.TextChanged += new System.EventHandler(this.AlbumNameTextChanged);
             // 
             // label2
             // 
@@ -69,6 +70,7 @@
             this.musicList.Name = "musicList";
             this.musicList.Size = new System.Drawing.Size(501, 160);
             this.musicList.TabIndex = 3;
+            this.musicList.SelectedIndexChanged += new System.EventHandler(this.musicList_SelectedIndexChanged);
             // 
             // button2
             // 
@@ -78,7 +80,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "+";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.AddMusicClick);
             // 
             // button1
             // 
@@ -88,13 +90,24 @@
             this.button1.TabIndex = 5;
             this.button1.Text = "-";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.RemoveMusicClick);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(438, 250);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 7;
+            this.saveButton.Text = "OK";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveButtonClick);
             // 
             // CreateAlbumForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 256);
+            this.ClientSize = new System.Drawing.Size(525, 278);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.musicList);
@@ -116,5 +129,6 @@
         private System.Windows.Forms.ListBox musicList;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button saveButton;
     }
 }

@@ -19,17 +19,20 @@ namespace App
             _album = album;
 
             albumName.Text = _album.Name;
-            musicList.Items.AddRange(_album.GetAllMusics());
+            musicList.Items.AddRange(_album.GetAllMusics().Select(p=>p.Name).ToArray());
         }
 
-        private void musicList_SelectedIndexChanged(object sender, EventArgs e)
+        private void MusicListSelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (Control control in musicViewer.Controls)
+            if(!musicList.SelectedItem.Equals(""))
             {
-                musicViewer.Controls.Remove(control);
-            }
+                foreach (Control control in musicViewer.Controls)
+                {
+                    musicViewer.Controls.Remove(control);
+                }
 
-            musicViewer.Controls.Add(new MusicViewer(_album[((ListBox)sender).SelectedItem.ToString()]));
+                musicViewer.Controls.Add(new MusicViewer(_album[((ListBox)sender).SelectedItem.ToString()]));    
+            }
         }
     }
 }

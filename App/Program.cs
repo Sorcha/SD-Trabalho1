@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting;
 using System.Windows.Forms;
+using App.Forms;
 using Logic.Model;
 
 namespace App
@@ -17,8 +18,7 @@ namespace App
             
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new ConnectPeer());
-            Application.Run(new MusicDatabaseViewer(MusicDatabase.Load("...")));
+            Application.Run(new ConnectPeer());
         }
     }
 }

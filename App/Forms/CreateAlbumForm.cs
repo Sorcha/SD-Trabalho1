@@ -14,26 +14,39 @@ namespace App.Forms
             Album = new Album();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void AddMusicClick(object sender, EventArgs e)
         {
             var createMusicForm = new CreateMusicForm();
             createMusicForm.Closing += (p, t) => {
                                                      if (createMusicForm.Music != null)
+                                                     {
                                                          Album.StoreMusic(createMusicForm.Music);
+                                                         musicList.Items.Add(createMusicForm.Music.Name);
+                                                     }
             };
-            createMusicForm.Show();
+            createMusicForm.Show(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void RemoveMusicClick(object sender, EventArgs e)
         {
             string selectedMusic = musicList.SelectedItem.ToString();
             Album.RemoveMusic(selectedMusic);
             musicList.Items.Remove(selectedMusic);
         }
 
-        private void albumName_TextChanged(object sender, EventArgs e)
+        private void AlbumNameTextChanged(object sender, EventArgs e)
         {
             Album.Name = albumName.Text;
+        }
+
+        private void SaveButtonClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void musicList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

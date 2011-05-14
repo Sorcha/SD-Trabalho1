@@ -1,4 +1,4 @@
-﻿namespace App
+﻿namespace App.Forms
 {
     partial class MusicDatabaseViewer
     {
@@ -33,6 +33,7 @@
             this.albumViewer = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.saveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // albunsList
@@ -68,7 +69,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "-";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.RemoveAlbumClick);
             // 
             // button2
             // 
@@ -78,13 +79,24 @@
             this.button2.TabIndex = 4;
             this.button2.Text = "+";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.AddAlbumClick);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Location = new System.Drawing.Point(619, 313);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
+            this.saveButton.TabIndex = 5;
+            this.saveButton.Text = "Save";
+            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.SaveButtonClick);
             // 
             // MusicDatabaseViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 323);
+            this.ClientSize = new System.Drawing.Size(707, 340);
+            this.Controls.Add(this.saveButton);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.albumViewer);
@@ -104,5 +116,6 @@
         private System.Windows.Forms.Panel albumViewer;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button saveButton;
     }
 }
