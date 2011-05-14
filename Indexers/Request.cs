@@ -6,16 +6,18 @@ namespace Logic
     [Serializable]
     public class Request : IRequest
     {
-        public Request(ISearchCriteria criteria) : this(criteria, 50)
+        public Request(ISearchCriteria criteria, ReceiveResponse callback)
+            : this(criteria, 50, callback)
         {
         }
 
-        public Request(ISearchCriteria criteria, int depth)
+        public Request(ISearchCriteria criteria, int depth, ReceiveResponse callback)
         {
             Identifier = Environment.MachineName + Peer.Self.Name + DateTime.UtcNow;
             SearchCriteria = criteria;
             Requester = Peer.Self;
             Depth = depth;
+            Callback = callback;
         }
 
         #region Implementation of IRequest
@@ -36,6 +38,8 @@ namespace Logic
         {
             get; private set;
         }
+
+        public ReceiveResponse Callback { get; private set; }
 
         public int DecrementDepth()
         {

@@ -44,7 +44,7 @@ namespace Logic
 
         public void Add(IPeer peer)
         {
-            if(!_container.Contains(peer))
+            if(!_container.Contains(peer) && !peer.Equals(Peer.Self))
             {
                 _container.Add(peer);
                 try

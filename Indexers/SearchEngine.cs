@@ -20,7 +20,7 @@ namespace Logic
 
         public void StartSearching(ISearchCriteria criteria)
         {
-            IRequest request = new Request(criteria);
+            IRequest request = new Request(criteria, Callback);
 
             StartSearching(request);
         }
@@ -35,7 +35,7 @@ namespace Logic
             }
             else
             {
-                Callback(request, localPath);
+                request.Callback(request, localPath);
             }
         }
         

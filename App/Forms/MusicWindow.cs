@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Configuration;
-using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
-using App.Forms;
 using Interfaces;
 using Logic;
-using Logic.Model;
 
-namespace App
+namespace App.Forms
 {
     public partial class MusicWindow : Form
     {
@@ -45,23 +42,27 @@ namespace App
 
         public void ShowResponse(IRequest request, Uri response)
         {
-            foreach (TabPage source in responsesTab.TabPages)
-            {
-                if(source.Text.Equals(request.SearchCriteria.Value))
-                {
-                    if(source.Controls.Count == 0)
-                    {
-                        source.Controls.Add(new ListBox());
-                    }
+            _guiContext.Post(_ =>
+                                 {
+                                     foreach (TabPage source in responsesTab.TabPages)
+                                     {
+                                         if (source.Text.Equals(request.SearchCriteria.Value))
+                                         {
+                                             if (source.Controls.Count == 0)
+                                             {
+                                                 source.Controls.Add(new ListBox());
+                                             }
 
-                    ListBox list = source.Controls[0] as ListBox;
-                    if(list != null)
-                    {
-                        list.Items.Add(response);
-                    }
-                    break;
-                }
-            }
+                                             ListBox list = source.Controls[0] as ListBox;
+                                             if (list != null)
+                                             {
+                                                 list.Items.Add(response);
+                                             }
+                                             break;
+                                         }
+                                     }
+                                 }, null);
+            
         }
 
         private void ViewDatabaseToolStripMenuItemClick(object sender, EventArgs e)

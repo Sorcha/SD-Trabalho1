@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Runtime.Remoting;
 using System.Windows.Forms;
+using App.Forms;
 using Interfaces;
 using Logic;
 
