@@ -75,9 +75,11 @@ namespace App
             Close();
         }
 
-        private void searchButton_Click(object sender, EventArgs e)
+        private void SearchButtonClick(object sender, EventArgs e)
         {
             responsesTab.TabPages.Add(new TabPage(searchTB.Text));
+            Peer.Self.SearchEngine.StartSearching(new SearchCriteria(SearchType.Album, searchTB.Text));
+            searchTB.Text = "";
         }
     }
 }

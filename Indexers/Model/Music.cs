@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Interfaces.Model;
 
 namespace Logic.Model
@@ -7,8 +8,10 @@ namespace Logic.Model
     [Serializable]
     public class Music : IMusic
     {
+        [XmlAttribute]
         public string Name { get; set; }
 
+        [XmlAttribute]
         private readonly List<string> _artists = new List<string>();
 
         public IEnumerable<string> GetArtists()

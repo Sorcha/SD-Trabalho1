@@ -47,12 +47,18 @@ namespace Logic
             if(!_container.Contains(peer))
             {
                 _container.Add(peer);
-                foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                try
                 {
-                    Add(peer1);
+                    foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                    {
+                        Add(peer1);
+                    }
+                }
+                catch(WebException)
+                {
+                    _container.Remove(peer);
                 }
             }
-            
         }
 
         public IEnumerable<IPeer> GetAll()

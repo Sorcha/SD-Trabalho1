@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using Interfaces;
 using Interfaces.Model;
@@ -15,6 +16,8 @@ namespace App.Forms
         {
             InitializeComponent();
             _database = database;
+
+            albunsList.Items.AddRange(_database.GetAllAlbums().Select(p => p.Name).ToArray());
         }
 
         public MusicDatabaseViewer(IMusicDatabase database, string fileName) : this(database)

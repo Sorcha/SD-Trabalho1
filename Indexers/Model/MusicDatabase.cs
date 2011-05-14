@@ -11,7 +11,8 @@ namespace Logic.Model
     [Serializable]
     public class MusicDatabase : IMusicDatabase
     {
-        private readonly Dictionary<string, IAlbum> _albuns = new Dictionary<string, IAlbum>();
+        [XmlAttribute]
+        private readonly List<IAlbum> _albuns = new List<IAlbum>();
 
         private MusicDatabase()
         {
@@ -20,20 +21,20 @@ namespace Logic.Model
 
         public bool HasAlbum(string albumName)
         {
-            return _albuns.ContainsKey(albumName);
+            return _albuns.Where(p => p.Name.Equals(albumName)).Count() != 0;
         }
 
         public IAlbum GetAlbum(string albumName)
         {
             if(HasAlbum(albumName))
-                return _albuns[albumName];
+                return _albuns.Where(p => p.Name.Equals(albumName)).SingleOrDefault();
             return null;
         }
 
         public void StoreAlbum(IAlbum album)
         {
             if(!HasAlbum(album.Name))
-                _albuns.Add(album.Name, album);
+                _albuns.Add(album);
             else
                 throw new AlreadyExistingAlbumException();
         }
@@ -70,9 +71,14 @@ namespace Logic.Model
             }
         }
 
+        public IEnumerable<IAlbum> GetAllAlbums()
+        {
+            return _albuns;
+        }
+
         public void RemoveAlbum(string albumName)
         {
-            var album = _albuns.Where(m => m.Value.Name.Equals(albumName)).Select(p => p.Key).Single();
+            var album = GetAlbum(albumName);
             _albuns.Remove(album);
         }
     }

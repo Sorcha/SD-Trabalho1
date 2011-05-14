@@ -25,5 +25,20 @@ namespace Logic
         public IPeerContainer PeerContainer { get; private set; }
 
         #endregion
+
+        public override bool Equals(object obj)
+        {
+            if(obj is IPeer)
+            {
+                IPeer peer = obj as IPeer;
+                return peer.Name.Equals(this.Name);
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
     }
 }

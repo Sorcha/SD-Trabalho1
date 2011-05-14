@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 using Interfaces.Model;
 
 namespace Logic.Model
@@ -8,37 +9,44 @@ namespace Logic.Model
     [Serializable]
     public class Album : IAlbum
     {
+        [XmlAttribute]
         public string Name { get; set; }
 
-        private Dictionary<string, Music> _music = new Dictionary<string, Music>(); 
+        [XmlAttribute]
+        private readonly List<IMusic> _music = new List<IMusic>(); 
 
         public IMusic this[string musicName]
         {
             get
             {
-                if (_music.ContainsKey(musicName)) 
-                    return _music[musicName]; 
+                if (HasMusic(musicName))
+                    return _music.Where(p => p.Name.Equals(musicName)).SingleOrDefault(); 
                 return null;
             }
         }
 
+        public bool HasMusic(string musicName)
+        {
+            return _music.Where(p => p.Name.Equals(musicName)).Count() != 0;
+        }
+
         public void StoreMusic(Music music)
         {
-            if(!_music.ContainsKey(music.Name))
-                _music.Add(music.Name, music);
+            if(!HasMusic(music.Name))
+                _music.Add(music);
             else
                 throw new AlreadyExistingMusicException();
         }
 
         public void RemoveMusic(string name)
         {
-            var music = _music.Where(m => m.Value.Name.Equals(name)).Select(p => p.Key).Single();
+            var music = this[name];
             _music.Remove(music);
         }
 
-        public IMusic[] GetAllMusics()
+        public IEnumerable<IMusic> GetAllMusics()
         {
-            return _music.Values.ToArray();
+            return _music;
         }
     }
 
