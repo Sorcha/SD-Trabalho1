@@ -46,9 +46,9 @@
             // availablePeersList
             // 
             this.availablePeersList.FormattingEnabled = true;
-            this.availablePeersList.Location = new System.Drawing.Point(578, 59);
+            this.availablePeersList.Location = new System.Drawing.Point(578, 50);
             this.availablePeersList.Name = "availablePeersList";
-            this.availablePeersList.Size = new System.Drawing.Size(178, 225);
+            this.availablePeersList.Size = new System.Drawing.Size(178, 238);
             this.availablePeersList.TabIndex = 0;
             // 
             // label1
@@ -91,7 +91,7 @@
             this.responsesTab.Location = new System.Drawing.Point(15, 84);
             this.responsesTab.Name = "responsesTab";
             this.responsesTab.SelectedIndex = 0;
-            this.responsesTab.Size = new System.Drawing.Size(543, 200);
+            this.responsesTab.Size = new System.Drawing.Size(543, 204);
             this.responsesTab.TabIndex = 6;
             // 
             // label3

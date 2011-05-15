@@ -28,8 +28,9 @@ namespace App
             if (container != null) container.Add(peer);
 
             Form thisForm = this;
-            _form.Show();
-            _form.Closed += (se, ev) => thisForm.Close();
+            _form.Show(thisForm);
+            _form.Closed += (se, ev) =>
+                            Application.Exit();
             Hide();
         }
 

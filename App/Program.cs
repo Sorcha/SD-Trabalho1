@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.Remoting;
 using System.Windows.Forms;
-using App.Forms;
-using Logic.Model;
+using Logic;
 
 namespace App
 {

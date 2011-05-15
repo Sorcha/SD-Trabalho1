@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LocalIndexer.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\Music.cs" />
     <Compile Include="Model\MusicDatabase.cs" />

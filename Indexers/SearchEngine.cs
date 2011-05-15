@@ -27,16 +27,21 @@ namespace Logic
 
         public void StartSearching(IRequest request)
         {
+            bool found;
             request.DecrementDepth();
             Uri localPath = _localIndexer.SearchFor(request.SearchCriteria);
             if (request.Depth != 0 && localPath == null)
             {
                 new RemoteIndexer().SearchFor(request);
+                found = false;
             }
             else
             {
                 request.Callback(request, localPath);
+                found = true;
             }
+            if(!request.Requester.Equals(Peer.Self))
+                Logger.Report(request, found);
         }
         
         public ReceiveResponse Callback { get; private set; }

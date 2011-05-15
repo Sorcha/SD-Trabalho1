@@ -18,12 +18,19 @@ namespace App.Forms
 
         private void MusicWindowLoad(object sender, EventArgs e)
         {
+            Logger.CreateLogger(ShowLog);
+            
             UpdateAvailablePeers();
 
             var thread = new Thread(new PeerHunter(UpdateAvailablePeers).Hunt);
             thread.Start();
         }
 
+        private void ShowLog(IRequest request, bool found)
+        {
+            remoteRequests.Items.Add(string.Format("{0} - {1} : {2} | {3}", request.Requester.Name,
+                request.SearchCriteria.Type, request.SearchCriteria.Value, (found ? "" : "Not ") + "Found"));
+        }
 
         public void UpdateAvailablePeers()
         {
@@ -48,12 +55,15 @@ namespace App.Forms
                                      {
                                          if (source.Text.Equals(request.SearchCriteria.Value))
                                          {
+                                             ListBox list;
                                              if (source.Controls.Count == 0)
                                              {
-                                                 source.Controls.Add(new ListBox());
+                                                 list = new ListBox {Dock = DockStyle.Fill};
+                                                 source.Controls.Add(list);
                                              }
+                                             else
+                                                list = source.Controls[0] as ListBox;
 
-                                             ListBox list = source.Controls[0] as ListBox;
                                              if (list != null)
                                              {
                                                  list.Items.Add(response);
