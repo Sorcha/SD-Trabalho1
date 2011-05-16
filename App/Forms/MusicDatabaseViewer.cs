@@ -27,7 +27,7 @@ namespace App.Forms
 
         private void AlbunsListSelectedIndexChanged(object sender, EventArgs e)
         {
-            if(!albunsList.SelectedItem.Equals(""))
+            if(albunsList.SelectedItem != null && !albunsList.SelectedItem.Equals(""))
             {
                 foreach (Control control in albumViewer.Controls)
                 {

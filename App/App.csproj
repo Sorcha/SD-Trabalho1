@@ -47,6 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AddNewPeerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddNewPeerForm.Designer.cs">
+      <DependentUpon>AddNewPeerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateAlbumForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -58,6 +64,12 @@
     </Compile>
     <Compile Include="Forms\CreateMusicForm.Designer.cs">
       <DependentUpon>CreateMusicForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserControls\AddPeerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\UserControls\AddPeerControl.Designer.cs">
+      <DependentUpon>AddPeerControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserControls\AlbumViewer.cs">
       <SubType>UserControl</SubType>
@@ -92,11 +104,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AddNewPeerForm.resx">
+      <DependentUpon>AddNewPeerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateAlbumForm.resx">
       <DependentUpon>CreateAlbumForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateMusicForm.resx">
       <DependentUpon>CreateMusicForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserControls\AddPeerControl.resx">
+      <DependentUpon>AddPeerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserControls\AlbumViewer.resx">
       <DependentUpon>AlbumViewer.cs</DependentUpon>

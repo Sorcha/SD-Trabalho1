@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Interfaces
@@ -13,6 +14,8 @@ namespace Interfaces
         bool RemovePeer(IPeer p);
 
         void Add(IPeer p);
+
+        void Add(Uri peerUri);
 
         void Synchronize();
 

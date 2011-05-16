@@ -61,6 +61,16 @@ namespace Logic
             }
         }
 
+        public void Add(Uri peerUri)
+        {
+            var peerContainer =
+                    (IPeerContainer)Activator.GetObject(typeof(IPeerContainer), peerUri.ToString());
+
+            var peer = peerContainer.GetPeer();
+
+            Add(peer);
+        }
+
         public IEnumerable<IPeer> GetAll()
         {
             return _container;
