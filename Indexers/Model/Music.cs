@@ -11,25 +11,25 @@ namespace Logic.Model
         [XmlAttribute]
         public string Name { get; set; }
 
-        [XmlAttribute]
-        private readonly List<string> _artists = new List<string>();
+        //[XmlAttribute]
+        public readonly List<string> Artists = new List<string>();
 
         public IEnumerable<string> GetArtists()
         {
-            return _artists;
+            return Artists;
         }
 
         public void AddArtist(string artist)
         {
-            if(!_artists.Contains(artist))
-                _artists.Add(artist);
+            if (!Artists.Contains(artist))
+                Artists.Add(artist);
             else
                 throw new AlreadyExistingArtistException();
         }
 
         public void RemoveArtist(string artist)
         {
-            _artists.Remove(artist);
+            Artists.Remove(artist);
         }
     }
 
