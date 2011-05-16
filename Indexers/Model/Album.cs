@@ -12,28 +12,28 @@ namespace Logic.Model
         [XmlAttribute]
         public string Name { get; set; }
 
-        [XmlAttribute]
-        private readonly List<IMusic> _music = new List<IMusic>(); 
+        //[XmlAttribute]
+        public readonly List<Music> Musics = new List<Music>(); 
 
         public IMusic this[string musicName]
         {
             get
             {
                 if (HasMusic(musicName))
-                    return _music.Where(p => p.Name.Equals(musicName)).SingleOrDefault(); 
+                    return Musics.Where(p => p.Name.Equals(musicName)).SingleOrDefault(); 
                 return null;
             }
         }
 
         public bool HasMusic(string musicName)
         {
-            return _music.Where(p => p.Name.Equals(musicName)).Count() != 0;
+            return Musics.Where(p => p.Name.Equals(musicName)).Count() != 0;
         }
 
         public void StoreMusic(Music music)
         {
             if(!HasMusic(music.Name))
-                _music.Add(music);
+                Musics.Add(music);
             else
                 throw new AlreadyExistingMusicException();
         }
@@ -41,12 +41,12 @@ namespace Logic.Model
         public void RemoveMusic(string name)
         {
             var music = this[name];
-            _music.Remove(music);
+           Musics.Remove((Music)music);
         }
 
         public IEnumerable<IMusic> GetAllMusics()
         {
-            return _music;
+            return Musics;
         }
     }
 
