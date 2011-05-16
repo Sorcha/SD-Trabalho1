@@ -96,5 +96,10 @@ namespace App.Forms
             Peer.Self.SearchEngine.StartSearching(new SearchCriteria(SearchType.Album, searchTB.Text));
             searchTB.Text = "";
         }
+
+        private void addPeer_Click(object sender, EventArgs e)
+        {
+            new AddNewPeerForm(UpdateAvailablePeers).ShowDialog(this);
+        }
     }
 }

@@ -40,40 +40,43 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addPeer = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // availablePeersList
             // 
             this.availablePeersList.FormattingEnabled = true;
-            this.availablePeersList.Location = new System.Drawing.Point(578, 50);
+            this.availablePeersList.Location = new System.Drawing.Point(578, 63);
             this.availablePeersList.Name = "availablePeersList";
-            this.availablePeersList.Size = new System.Drawing.Size(178, 238);
+            this.availablePeersList.Size = new System.Drawing.Size(178, 225);
             this.availablePeersList.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(578, 34);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(575, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.Size = new System.Drawing.Size(104, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Available Peers";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(12, 34);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(51, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Search";
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(483, 41);
+            this.searchButton.Location = new System.Drawing.Point(483, 34);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(75, 37);
+            this.searchButton.Size = new System.Drawing.Size(75, 44);
             this.searchButton.TabIndex = 3;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
@@ -81,7 +84,7 @@
             // 
             // searchTB
             // 
-            this.searchTB.Location = new System.Drawing.Point(15, 50);
+            this.searchTB.Location = new System.Drawing.Point(15, 58);
             this.searchTB.Name = "searchTB";
             this.searchTB.Size = new System.Drawing.Size(462, 20);
             this.searchTB.TabIndex = 4;
@@ -97,9 +100,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 301);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 298);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 13);
+            this.label3.Size = new System.Drawing.Size(117, 16);
             this.label3.TabIndex = 7;
             this.label3.Text = "Remote Requests";
             // 
@@ -144,11 +148,22 @@
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItemClick);
             // 
+            // addPeer
+            // 
+            this.addPeer.Location = new System.Drawing.Point(730, 34);
+            this.addPeer.Name = "addPeer";
+            this.addPeer.Size = new System.Drawing.Size(26, 23);
+            this.addPeer.TabIndex = 10;
+            this.addPeer.Text = "+";
+            this.addPeer.UseVisualStyleBackColor = true;
+            this.addPeer.Click += new System.EventHandler(this.addPeer_Click);
+            // 
             // MusicWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(768, 515);
+            this.Controls.Add(this.addPeer);
             this.Controls.Add(this.remoteRequests);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.responsesTab);
@@ -183,5 +198,6 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewDatabaseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.Button addPeer;
     }
 }

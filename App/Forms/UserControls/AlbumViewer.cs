@@ -25,7 +25,7 @@ namespace App
 
         private void MusicListSelectedIndexChanged(object sender, EventArgs e)
         {
-            if(!musicList.SelectedItem.Equals(""))
+            if(musicList.SelectedItem != null && !musicList.SelectedItem.Equals(""))
             {
                 foreach (Control control in musicViewer.Controls)
                 {

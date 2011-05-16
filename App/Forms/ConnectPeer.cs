@@ -1,45 +1,21 @@
 ﻿using System;
 using System.Configuration;
-using System.Net;
 using System.Runtime.Remoting;
 using System.Windows.Forms;
-using App.Forms;
-using Interfaces;
+using App.Forms.UserControls;
 using Logic;
 
-namespace App
+namespace App.Forms
 {
     public partial class ConnectPeer : Form
     {
         private readonly MusicWindow _form = new MusicWindow();
-            
+        private readonly AddPeerControl _addPeerControl;
+    
         public ConnectPeer()
         {
+            _addPeerControl = new AddPeerControl(AfterConnectAction);
             InitializeComponent();
-        }
-
-        private void ConnectClick(object sender, EventArgs e)
-        {
-            try
-            {
-                var peerContainer =
-                    (IPeerContainer)Activator.GetObject(typeof(IPeerContainer), peerAddress.Text);
-
-                var peer = peerContainer.GetPeer();
-
-                var container = Peer.Self.PeerContainer;
-                if (container != null) container.Add(peer);
-
-                Form thisForm = this;
-                _form.Show(thisForm);
-                _form.Closed += (se, ev) =>
-                                Application.Exit();
-                Hide();   
-            }
-            catch(WebException)
-            {
-                
-            }
         }
 
         private void RegisterClick(object sender, EventArgs e)
@@ -54,12 +30,22 @@ namespace App
             
             register.Enabled = false;
             peerName.Enabled = false;
-            connect.Enabled = true;
+            _addPeerControl.Enabled = true;
+        }
+
+        private void AfterConnectAction()
+        {
+            Form thisForm = this;
+            _form.Show();
+            _form.Closed += (_, p) => thisForm.Close();
+            Hide();
         }
 
         private void ConnectPeerLoad(object sender, EventArgs e)
         {
             Text += string.Format(": {0}", ConfigurationManager.AppSettings["port"]);
+            _addPeerControl.Dock = DockStyle.Fill;
+            addPeerPanel.Controls.Add(_addPeerControl);
         }
     }
 }
