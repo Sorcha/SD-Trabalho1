@@ -52,7 +52,7 @@ namespace Logic
                     }
                 }
 
-                return new Uri(string.Format("http://{0}:{1}/{2}", ip, ConfigurationManager.AppSettings["port"], Peer.Self.Name));
+                return new Uri(string.Format("http://{0}:{1}/{2}", "localhost", ConfigurationManager.AppSettings["port"], Peer.Self.Name));
             }
 
            return null;
