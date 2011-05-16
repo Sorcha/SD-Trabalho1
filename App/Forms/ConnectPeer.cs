@@ -27,7 +27,7 @@ namespace App
 
                 var peer = peerContainer.GetPeer();
 
-                var container = (Peer.Self.PeerContainer as PeerContainer);
+                var container = Peer.Self.PeerContainer;
                 if (container != null) container.Add(peer);
 
                 Form thisForm = this;
