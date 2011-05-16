@@ -41,7 +41,18 @@ namespace Logic
         {
             if (_dataBase.HasAlbum(criteria.Value))
             {
-                return new Uri(string.Format("http://{0}:{1}/{2}", Dns.GetHostEntry(Dns.GetHostName()), ConfigurationManager.AppSettings["port"], Peer.Self.Name));
+                IPAddress ip = null;
+
+                foreach(var i in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
+                {
+                    if(!i.IsIPv6LinkLocal)
+                    {
+                        ip = i;
+                        break;
+                    }
+                }
+
+                return new Uri(string.Format("http://{0}:{1}/{2}", ip, ConfigurationManager.AppSettings["port"], Peer.Self.Name));
             }
 
            return null;

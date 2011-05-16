@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Interfaces
 {
     public interface IPeerContainer
@@ -9,5 +11,11 @@ namespace Interfaces
         IPeer GetPeer();
 
         bool RemovePeer(IPeer p);
+
+        void Add(IPeer p);
+
+        void Synchronize();
+
+        IEnumerable<IPeer> GetAll();
     }
 }

@@ -52,11 +52,12 @@
             // 
             // connect
             // 
+            this.connect.Enabled = false;
             this.connect.Location = new System.Drawing.Point(464, 120);
             this.connect.Name = "connect";
             this.connect.Size = new System.Drawing.Size(84, 45);
             this.connect.TabIndex = 2;
-            this.connect.Text = "Connect BIATCH";
+            this.connect.Text = "Connect";
             this.connect.UseVisualStyleBackColor = true;
             this.connect.Click += new System.EventHandler(this.ConnectClick);
             // 
@@ -101,6 +102,8 @@
             this.Controls.Add(this.connect);
             this.Controls.Add(this.peerAddress);
             this.Controls.Add(this.peerName);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ConnectPeer";
             this.Text = "Connect Peer";
             this.Load += new System.EventHandler(this.ConnectPeerLoad);

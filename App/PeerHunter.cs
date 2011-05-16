@@ -9,7 +9,7 @@ namespace App
     class PeerHunter
     {
         private int _timeBetweenSearches = 5000; //In ms
-        private const int IncrementAfterSearch = 2;
+        private const float IncrementMultiplierAfterSearch = 0.6f;
         private const int MaxTimeBetweenSearches = 20*60*60*1000;
         private readonly Callback _callback;
 
@@ -23,7 +23,7 @@ namespace App
             do
             {
                 var container =
-                    Peer.Self.PeerContainer as PeerContainer;
+                    Peer.Self.PeerContainer;
 
                 if (container != null)
                 {
@@ -36,7 +36,7 @@ namespace App
                 Thread.Sleep(_timeBetweenSearches);
 
                 if (_timeBetweenSearches < MaxTimeBetweenSearches)
-                    _timeBetweenSearches += _timeBetweenSearches*IncrementAfterSearch;
+                    _timeBetweenSearches += (int)(_timeBetweenSearches*IncrementMultiplierAfterSearch);
             } while (true);
         }
     }
