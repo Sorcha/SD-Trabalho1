@@ -13,6 +13,7 @@ namespace App.Forms
         public MusicWindow()
         {
             InitializeComponent();
+            
             _guiContext = SynchronizationContext.Current;
         }
 
@@ -28,8 +29,11 @@ namespace App.Forms
 
         private void ShowLog(IRequest request, bool found)
         {
-            remoteRequests.Items.Add(string.Format("{0} - {1} : {2} | {3}", request.Requester.Name,
-                request.SearchCriteria.Type, request.SearchCriteria.Value, (found ? "" : "Not ") + "Found"));
+            _guiContext.Post(_ => remoteRequests.Items.Add(string.Format("{0} - {1} : {2} | {3}",
+                                                                         request.Requester.Name,
+                                                                         request.SearchCriteria.Type,
+                                                                         request.SearchCriteria.Value,
+                                                                         (found ? "" : "Not ") + "Found")),null);
         }
 
         public void UpdateAvailablePeers()

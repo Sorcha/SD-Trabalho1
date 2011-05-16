@@ -10,7 +10,7 @@ namespace App
 {
     public partial class ConnectPeer : Form
     {
-        readonly MusicWindow _form = new MusicWindow();
+        private readonly MusicWindow _form = new MusicWindow();
             
         public ConnectPeer()
         {
@@ -37,10 +37,12 @@ namespace App
         private void RegisterClick(object sender, EventArgs e)
         {
             Peer.Self = PeerFactory.CreateInstance(peerName.Text, _form.ShowResponse);
+          
             
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(PeerContainer),
                 peerName.Text,
                 WellKnownObjectMode.Singleton);
+            _form.Text = peerName.Text;
             
             register.Enabled = false;
         }
