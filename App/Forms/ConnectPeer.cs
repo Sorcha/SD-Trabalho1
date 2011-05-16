@@ -51,6 +51,8 @@ namespace App
                 WellKnownObjectMode.Singleton);
             
             register.Enabled = false;
+            peerName.Enabled = false;
+            connect.Enabled = true;
         }
 
         private void ConnectPeerLoad(object sender, EventArgs e)
