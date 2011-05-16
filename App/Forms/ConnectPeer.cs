@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Net;
 using System.Runtime.Remoting;
 using System.Windows.Forms;
 using App.Forms;
@@ -19,19 +20,26 @@ namespace App
 
         private void ConnectClick(object sender, EventArgs e)
         {
-            var peerContainer =
-                (IPeerContainer)Activator.GetObject(typeof(IPeerContainer), peerAddress.Text);
+            try
+            {
+                var peerContainer =
+                    (IPeerContainer)Activator.GetObject(typeof(IPeerContainer), peerAddress.Text);
 
-            var peer = peerContainer.GetPeer();
+                var peer = peerContainer.GetPeer();
 
-            var container = (Peer.Self.PeerContainer as PeerContainer);
-            if (container != null) container.Add(peer);
+                var container = (Peer.Self.PeerContainer as PeerContainer);
+                if (container != null) container.Add(peer);
 
-            Form thisForm = this;
-            _form.Show(thisForm);
-            _form.Closed += (se, ev) =>
-                            Application.Exit();
-            Hide();
+                Form thisForm = this;
+                _form.Show(thisForm);
+                _form.Closed += (se, ev) =>
+                                Application.Exit();
+                Hide();   
+            }
+            catch(WebException)
+            {
+                
+            }
         }
 
         private void RegisterClick(object sender, EventArgs e)

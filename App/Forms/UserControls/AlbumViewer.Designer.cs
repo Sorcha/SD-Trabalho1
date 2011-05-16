@@ -40,7 +40,7 @@
             this.musicList.FormattingEnabled = true;
             this.musicList.Location = new System.Drawing.Point(3, 68);
             this.musicList.Name = "musicList";
-            this.musicList.Size = new System.Drawing.Size(149, 238);
+            this.musicList.Size = new System.Drawing.Size(149, 212);
             this.musicList.TabIndex = 0;
             this.musicList.SelectedIndexChanged += new System.EventHandler(this.MusicListSelectedIndexChanged);
             // 
@@ -49,15 +49,15 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(40, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Músicas";
+            this.label1.Text = "Musics";
             // 
             // musicViewer
             // 
             this.musicViewer.Location = new System.Drawing.Point(158, 13);
             this.musicViewer.Name = "musicViewer";
-            this.musicViewer.Size = new System.Drawing.Size(227, 293);
+            this.musicViewer.Size = new System.Drawing.Size(227, 267);
             this.musicViewer.TabIndex = 2;
             // 
             // label2
@@ -88,7 +88,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.musicList);
             this.Name = "AlbumViewer";
-            this.Size = new System.Drawing.Size(388, 306);
+            this.Size = new System.Drawing.Size(388, 290);
             this.ResumeLayout(false);
             this.PerformLayout();
 
