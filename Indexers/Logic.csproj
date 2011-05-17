@@ -53,6 +53,7 @@
     <Compile Include="RemoteIndexer.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="SearchEngine.cs" />
+    <Compile Include="SearchEngineSponsor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Interfaces\Interfaces.csproj">

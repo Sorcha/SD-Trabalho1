@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Messaging;
 using Interfaces;
 
 namespace Logic
@@ -14,7 +17,23 @@ namespace Logic
             foreach (var peer in peers)
             {
                 SearchDelegate del = peer.SearchEngine.StartSearching;
-                del.BeginInvoke(criteria, null, null);
+                IAsyncResult result = del.BeginInvoke(criteria, null, null);
+                
+                if(result.IsCompleted)
+                {
+                    try
+                    {
+                        del.EndInvoke(result);
+                    }
+                    catch (WebException)
+                    {
+                        Peer.Self.PeerContainer.RemovePeer(peer);
+                    }
+                    catch (RemotingException)
+                    {
+                        Peer.Self.PeerContainer.RemovePeer(peer);
+                    }
+                }
             }
             return null;
         }

@@ -10,21 +10,24 @@ namespace App.Forms
     public partial class MusicWindow : Form
     {
         private readonly SynchronizationContext _guiContext;
+
+        public Thread PeerHunter;
+
         public MusicWindow()
         {
             InitializeComponent();
-            
+
             _guiContext = SynchronizationContext.Current;
         }
 
         private void MusicWindowLoad(object sender, EventArgs e)
         {
             Logger.CreateLogger(ShowLog);
-            
+
             UpdateAvailablePeers();
 
-            var thread = new Thread(new PeerHunter(UpdateAvailablePeers).Hunt);
-            thread.Start();
+            PeerHunter = new Thread(new PeerHunter(UpdateAvailablePeers).Hunt);
+            PeerHunter.Start();
         }
 
         private void ShowLog(IRequest request, bool found)
@@ -95,6 +98,8 @@ namespace App.Forms
             responsesTab.TabPages.Add(new TabPage(searchTB.Text));
             Peer.Self.SearchEngine.StartSearching(new SearchCriteria(SearchType.Album, searchTB.Text));
             searchTB.Text = "";
+            UpdateAvailablePeers();
+
         }
 
         private void addPeer_Click(object sender, EventArgs e)

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.Remoting;
+using System.Runtime.Remoting.Lifetime;
 using Interfaces;
 using System.Linq;
 
@@ -8,6 +10,11 @@ namespace Logic
 {
     public class PeerContainer : MarshalByRefObject, IPeerContainer
     {
+        public override object InitializeLifetimeService()
+        {
+            return null;
+        }
+
         private readonly List<IPeer> _container = new List<IPeer>();
 
         public IPeer this[string name]
@@ -44,31 +51,44 @@ namespace Logic
 
         public void Add(IPeer peer)
         {
-            if(!_container.Contains(peer) && !peer.Equals(Peer.Self))
+            lock(this)
             {
-                _container.Add(peer);
-                try
+                if (!_container.Contains(peer) && !peer.Equals(Peer.Self))
                 {
-                    foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                    var lease = RemotingServices.GetLifetimeService((MarshalByRefObject) peer) as ILease;
+                    if (lease != null) lease.Register(new SearchEngineSponsor());
+
+                    _container.Add(peer);
+                    try
                     {
-                        Add(peer1);
+                        foreach (var peer1 in peer.PeerContainer.GetAvailablePeers())
+                        {
+                            Add(peer1);
+                        }
                     }
-                }
-                catch(WebException)
-                {
-                    _container.Remove(peer);
+                    catch(RemotingException)
+                    {
+                        _container.Remove(peer);
+                    }
+                    catch (WebException)
+                    {
+                        _container.Remove(peer);
+                    }
                 }
             }
         }
 
         public void Add(Uri peerUri)
         {
-            var peerContainer =
-                    (IPeerContainer)Activator.GetObject(typeof(IPeerContainer), peerUri.ToString());
+            lock(this)
+            {
+                var peerContainer =
+                        (IPeerContainer)Activator.GetObject(typeof(IPeerContainer), peerUri.ToString());
 
-            var peer = peerContainer.GetPeer();
+                var peer = peerContainer.GetPeer();
 
-            Add(peer);
+                Add(peer);
+            }
         }
 
         public IEnumerable<IPeer> GetAll()
@@ -80,26 +100,34 @@ namespace Logic
         {
             List<IPeer> newPeer = new List<IPeer>();
             List<IPeer> toRemove = new List<IPeer>();
-            foreach (var peer in _container)
+            
+            lock(this)
             {
-                try
+                foreach (var peer in _container)
                 {
-                    newPeer.AddRange(peer.PeerContainer.GetAvailablePeers());
+                    try
+                    {
+                        newPeer.AddRange(peer.PeerContainer.GetAvailablePeers());
+                    }
+                    catch (RemotingException)
+                    {
+                        toRemove.Add(peer);
+                    }
+                    catch (WebException)
+                    {
+                        toRemove.Add(peer);
+                    }
                 }
-                catch(WebException)
+
+                foreach(var peer in newPeer)
                 {
-                    toRemove.Add(peer);
+                    Add(peer);
                 }
-            }
 
-            foreach(var peer in newPeer)
-            {
-                Add(peer);
-            }
-
-            foreach (var peer in toRemove)
-            {
-                _container.Remove(peer);
+                foreach (var peer in toRemove)
+                {
+                    _container.Remove(peer);
+                }
             }
         }
     }

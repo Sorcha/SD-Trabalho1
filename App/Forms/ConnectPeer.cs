@@ -22,7 +22,6 @@ namespace App.Forms
         {
             Peer.Self = PeerFactory.CreateInstance(peerName.Text, _form.ShowResponse);
           
-            
             RemotingConfiguration.RegisterWellKnownServiceType(typeof(PeerContainer),
                 peerName.Text,
                 WellKnownObjectMode.Singleton);
@@ -37,7 +36,11 @@ namespace App.Forms
         {
             Form thisForm = this;
             _form.Show();
-            _form.Closed += (_, p) => thisForm.Close();
+            _form.Closed += (_, p) =>
+                                {
+                                    thisForm.Close();
+                                    _form.PeerHunter.Interrupt();
+                                };
             Hide();
         }
 

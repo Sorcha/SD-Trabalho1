@@ -20,24 +20,31 @@ namespace App
 
         public void Hunt()
         {
-            do
+            try
             {
-                var container =
-                    Peer.Self.PeerContainer;
-
-                if (container != null)
+                do
                 {
-                    container.Synchronize();
-                    _callback();
-                }
-                else
-                    throw new InvalidProgramException(); //Can't be null.
+                    var container =
+                        Peer.Self.PeerContainer;
 
-                Thread.Sleep(_timeBetweenSearches);
+                    if (container != null)
+                    {
+                        container.Synchronize();
+                        _callback();
+                    }
+                    else
+                        throw new InvalidProgramException(); //Can't be null.
 
-                if (_timeBetweenSearches < MaxTimeBetweenSearches)
-                    _timeBetweenSearches += (int)(_timeBetweenSearches*IncrementMultiplierAfterSearch);
-            } while (true);
+                    Thread.Sleep(_timeBetweenSearches);
+
+                    if (_timeBetweenSearches < MaxTimeBetweenSearches)
+                        _timeBetweenSearches += (int)(_timeBetweenSearches * IncrementMultiplierAfterSearch);
+                } while (true);
+            }
+            catch(ThreadInterruptedException)
+            {
+                return;
+            }
         }
     }
 }
